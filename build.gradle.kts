@@ -15,12 +15,3 @@ allprojects {
     jcenter()
   }
 }
-
-task<Delete>("clean") {
-  delete = setOf(rootProject.buildDir)
-}
-
-tasks.withType(Wrapper::class.java) {
-  gradleVersion = "5.2.1"
-  distributionType = Wrapper.DistributionType.ALL
-}

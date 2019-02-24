@@ -1,0 +1,56 @@
+failFast: true
+
+comments:
+  active: true
+  UndocumentedPublicClass:
+    active: false
+  UndocumentedPublicFunction:
+    active: false
+  CommentOverPrivateFunction:
+    active: false
+
+complexity:
+  active: true
+  LabeledExpression:
+    active: false
+  StringLiteralDuplication:
+    active: false
+
+naming:
+  VariableNaming:
+    active: true
+    variablePattern: '(?![ms]{1}[A-Z]{1})[A-Za-z0-9]*'
+    privateVariablePattern: '(_)?(?![ms]{1}[A-Z]{1})[A-Za-z0-9]*'
+    # No mHungarians
+
+performance:
+  active: true
+  SpreadOperator:
+    active: false
+
+potential-bugs:
+  active: true
+  UnsafeCallOnNullableType:
+    active: false
+  UnsafeCast:
+    active: false
+  LateinitUsage:
+    active: false
+
+style:
+  active: true
+  ForbiddenComment:
+    active: false
+  MagicNumber:
+    active: false
+  MandatoryBracesIfStatements:
+    active: false
+  MaxLineLength:
+    active: true
+    maxLineLength: 200
+  NewLineAtEndOfFile:
+    active: false
+  UnnecessaryApply:
+    active: false
+  WildcardImport:
+    active: false
