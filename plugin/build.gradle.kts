@@ -50,8 +50,8 @@ pluginBundle {
 }
 
 configure<PublishExtension> {
-  bintrayUser = project.properties["bintray.user"] as String
-  bintrayKey = project.properties["bintray.apikey"] as String
+  bintrayUser = project.properties["bintray.user"] as? String ?: System.getProperty("BINTRAY_USER")
+  bintrayKey = project.properties["bintray.apikey"] as? String ?: System.getProperty("BINTRAY_API_KEY")
 
   userOrg = "otormaigh"
   groupId = GROUP_ID

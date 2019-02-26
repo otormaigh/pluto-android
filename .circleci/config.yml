@@ -8,6 +8,7 @@ jobs:
     working_directory: ~/pluto
     docker:
       - image: circleci/android:api-28-alpha
+    parallelism: 4
     environment:
       TERM: dumb
 
@@ -36,6 +37,7 @@ jobs:
     working_directory: ~/pluto
     docker:
       - image: circleci/android:api-28-alpha
+    parallelism: 4
     environment:
       TERM: dumb
 
@@ -57,8 +59,8 @@ workflows:
             branches:
               only:
                 - master
-                - /release-.*/
-                - /feature-.*/
+                - /release/.*/
+                - /feature/.*/
       - build:
           requires:
             - check
@@ -66,4 +68,4 @@ workflows:
             branches:
               only:
                 - master
-                - /release-.*/
+                - /release/.*/
