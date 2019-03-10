@@ -4,30 +4,21 @@ import com.novoda.gradle.release.ReleasePlugin
 import ie.otormaigh.pluto.plugin.task.DeployTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.tasks.Delete
-import org.gradle.api.tasks.wrapper.Wrapper
 
 class PlutoLocalPlugin : Plugin<Project> {
   override fun apply(target: Project) {
-    val plutoLocalExtension = target.extensions.create("plutoLocal", PlutoLocalExtension::class.java).apply {
-      project = target
-    }
+    val plutoLocalExtension = target.extensions.create(PlutoLocalExtension.NAME, PlutoLocalExtension::class.java)
 
-    target.tasks.register(DeployTask.NAME, DeployTask::class.java) {
-      this.plutoLocalExtension = plutoLocalExtension
-      dependsOn("bintrayUpload")
-    }
+    target.afterEvaluate {
+      if (plutoLocalExtension.deployConfig.enable) {
+        target.tasks.register(DeployTask.NAME, DeployTask::class.java) {
+          this.plutoLocalExtension = plutoLocalExtension
+//          dependsOn("bintrayUpload")
+        }
 
-    target.plugins.apply(ReleasePlugin::class.java)
-    plutoLocalExtension.deployConfig.maven(target)
-
-    target.tasks.named("clean", Delete::class.java) {
-      delete = setOf(target.rootProject.buildDir)
-    }
-
-    target.tasks.withType(Wrapper::class.java) {
-      gradleVersion = "5.2.1"
-      distributionType = Wrapper.DistributionType.ALL
+//        target.plugins.apply(ReleasePlugin::class.java)
+//        plutoLocalExtension.deployConfig.maven(target)
+      }
     }
   }
 }

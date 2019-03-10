@@ -1,5 +1,5 @@
-import com.novoda.gradle.release.PublishExtension
 import ie.otormaigh.pluto.plugin.toolbox.BuildConst
+import ie.otormaigh.pluto.plugin.toolbox.extension.plutoLocal
 
 repositories {
   jcenter()
@@ -10,10 +10,15 @@ plugins {
   `java-gradle-plugin`
   id("com.gradle.plugin-publish") version "0.10.1"
 }
+//configure<PublishExtension> {
+//  artifactId = "pluto-plugin"
+//}
 apply<ie.otormaigh.pluto.plugin.PlutoLocalPlugin>()
-
-configure<PublishExtension> {
-  artifactId = "pluto-plugin"
+plutoLocal {
+  deploy {
+    enable = true
+    artifactId = "pluto"
+  }
 }
 
 group = BuildConst.GROUP_ID

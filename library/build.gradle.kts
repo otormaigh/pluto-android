@@ -1,9 +1,11 @@
-import com.novoda.gradle.release.PublishExtension
+import ie.otormaigh.pluto.plugin.toolbox.extension.plutoLocal
 
 plugins {
   id("com.android.library")
   id("kotlin-android")
 }
+apply<ie.otormaigh.pluto.plugin.PlutoLocalPlugin>()
+
 android {
   compileSdkVersion(28)
   defaultConfig {
@@ -32,7 +34,13 @@ dependencies {
   implementation("androidx.appcompat:appcompat:1.0.2")
 }
 
-apply<ie.otormaigh.pluto.plugin.PlutoLocalPlugin>()
-configure<PublishExtension> {
-  artifactId = "pluto"
+plutoLocal {
+  deploy {
+    enable = true
+    artifactId = "pluto"
+  }
 }
+
+//configure<PublishExtension> {
+//  artifactId = "pluto"
+//}
