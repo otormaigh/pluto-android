@@ -1,3 +1,6 @@
+import ie.otormaigh.pluto.toolbox.BuildConfig
+import ie.otormaigh.pluto.toolbox.Deps
+
 plugins {
   id("com.android.application")
   id("kotlin-android")
@@ -5,11 +8,11 @@ plugins {
 }
 
 android {
-  compileSdkVersion(28)
+  compileSdkVersion(BuildConfig.compileSdk)
   defaultConfig {
     applicationId = "ie.otormaigh.pluto"
-    minSdkVersion(21)
-    targetSdkVersion(28)
+    minSdkVersion(BuildConfig.minSdk)
+    targetSdkVersion(BuildConfig.targetSdk)
     versionCode = 1
     versionName = "0.1"
     the<BasePluginConvention>().archivesBaseName = "pluto-$versionName"
@@ -32,7 +35,7 @@ android {
 
       postprocessing.apply {
         proguardFiles("proguard-rules.pro")
-        isRemoveUnusedResources = false
+        isRemoveUnusedResources = true
         isRemoveUnusedCode = true
         isOptimizeCode = true
         isObfuscate = true
@@ -41,8 +44,8 @@ android {
   }
 
   dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.21")
-    implementation("androidx.appcompat:appcompat:1.0.2")
-    implementation("androidx.core:core-ktx:1.0.1")
+    implementation(Deps.Library.kotlin.stdlib)
+    implementation(Deps.Library.androidx.appcompat)
+    implementation("androidx.core:core-ktx:1.1.0-alpha04")
   }
 }
