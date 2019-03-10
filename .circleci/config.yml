@@ -1,16 +1,19 @@
 version: 2
 
+config: &config
+  working_directory: ~/pluto
+  docker:
+    - image: circleci/android:api-28-alpha
+  parallelism: 4
+  environment:
+    TERM: dumb
+
 cache_key: &cache_key
-  key: jars-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ checksum "build.gradle.kts" }}-{{ checksum "library/build.gradle.kts" }}-{{ checksum "plugin/build.gradle.kts" }}
+  key: jars-{{ checksum "gradle/wrapper/gradle-wrapper.properties" }}-{{ checksum "build.gradle.kts" }}
 
 jobs:
   check:
-    working_directory: ~/pluto
-    docker:
-      - image: circleci/android:api-28-alpha
-    parallelism: 4
-    environment:
-      TERM: dumb
+    <<: *config
 
     steps:
       - checkout
@@ -26,6 +29,10 @@ jobs:
           path: library/build/reports
       - store_artifacts:
           path: plugin/build/reports
+      - store_test_results:
+          path: build/reports/test-results
+      - store_artifacts:
+          path: build/reports/
 
       - save_cache:
           <<: *cache_key
@@ -34,12 +41,7 @@ jobs:
             - ~/.gradle/wrapper
 
   build:
-    working_directory: ~/pluto
-    docker:
-      - image: circleci/android:api-28-alpha
-    parallelism: 4
-    environment:
-      TERM: dumb
+    <<: *config
 
     steps:
       - checkout
@@ -54,13 +56,7 @@ workflows:
   version: 2
   check_build:
     jobs:
-      - check:
-          filters:
-            branches:
-              only:
-                - master
-                - /release/.*/
-                - /feature/.*/
+      - check
       - build:
           requires:
             - check
