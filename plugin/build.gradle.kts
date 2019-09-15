@@ -6,7 +6,7 @@ repositories {
 
 buildscript {
   dependencies {
-    classpath("com.novoda:bintray-release:0.9")
+    classpath("com.novoda:bintray-release:0.9.1")
   }
 }
 apply<com.novoda.gradle.release.ReleasePlugin>()
