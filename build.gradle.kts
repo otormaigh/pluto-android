@@ -5,7 +5,7 @@ buildscript {
   }
 
   dependencies {
-    classpath("com.android.tools.build:gradle:3.5.0-alpha06")
+    classpath("com.android.tools.build:gradle:3.5.0-alpha09")
     classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${ie.otormaigh.pluto.toolbox.Deps.Version.kotlin}")
   }
 }
@@ -21,6 +21,6 @@ task<Delete>("clean") {
 }
 
 tasks.withType(Wrapper::class.java) {
-  gradleVersion = "5.2.1"
+  gradleVersion = "5.3-rc-2"
   distributionType = Wrapper.DistributionType.ALL
 }
