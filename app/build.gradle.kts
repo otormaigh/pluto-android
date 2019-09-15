@@ -46,6 +46,6 @@ android {
   dependencies {
     implementation(Deps.Library.kotlin.stdlib)
     implementation(Deps.Library.androidx.appcompat)
-    implementation("androidx.core:core-ktx:1.1.0-alpha04")
+    implementation("androidx.core:core-ktx:1.2.0-alpha04")
   }
 }

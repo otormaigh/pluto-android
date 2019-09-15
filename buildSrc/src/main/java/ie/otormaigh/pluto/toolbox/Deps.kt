@@ -3,7 +3,7 @@ package ie.otormaigh.pluto.toolbox
 object Deps {
   object Version {
     // org.jetbrains.kotlin
-    const val kotlin = "1.3.21"
+    const val kotlin = "1.3.50"
   }
 
   object Library {
@@ -12,7 +12,7 @@ object Deps {
     }
 
     object androidx {
-      const val appcompat = "androidx.appcompat:appcompat:1.1.0-alpha02"
+      const val appcompat = "androidx.appcompat:appcompat:1.1.0"
     }
   }
 }
